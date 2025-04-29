@@ -49,7 +49,7 @@ def analyze_image(file_bytes):
         b64_image = base64.b64encode(file_bytes).decode("utf-8")
 
         response = openai.ChatCompletion.create(
-            model="gpt-4-vision-preview",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "system",
@@ -80,7 +80,7 @@ def analyze_image(file_bytes):
 if uploaded_file and api_key:
     file_bytes = uploaded_file.read()
     image = Image.open(uploaded_file)
-    st.image(image, caption="🔍 업로드된 이미지", use_column_width=True)
+    st.image(image, caption="🔍 업로드된 이미지", use_container_width=True)
 
     with st.spinner("AI가 사진을 분석하고 있습니다..."):
         result = analyze_image(file_bytes)
